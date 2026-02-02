@@ -18,9 +18,9 @@ const FloatingPhotoHeart = ({ imageSrc, position, size = "md", delay = 0 }: Floa
   };
 
   const sizeClasses = {
-    sm: "w-16 h-16 sm:w-20 sm:h-20",
-    md: "w-20 h-20 sm:w-24 sm:h-24",
-    lg: "w-24 h-24 sm:w-32 sm:h-32",
+    sm: "w-64 h-64 sm:w-80 sm:h-80",
+    md: "w-80 h-80 sm:w-96 sm:h-96",
+    lg: "w-96 h-96 sm:w-[28rem] sm:h-[28rem]",
   };
 
   return (
