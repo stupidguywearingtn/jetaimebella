@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import MessageCard from "@/components/MessageCard";
 import ActionButton from "@/components/ActionButton";
 import FloatingHearts from "@/components/FloatingHearts";
+import bellaCharacter from "@/assets/bella-character.png";
 
 type Step = "selection" | "question" | "response-ok" | "response-talk";
 
@@ -42,6 +43,13 @@ const Index = () => {
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 relative overflow-hidden">
       {/* Gradient overlay */}
       <div className="fixed inset-0 bg-gradient-to-br from-secondary/50 via-background to-muted/30 -z-10" />
+      
+      {/* Character image stuck to right edge */}
+      <img 
+        src={bellaCharacter} 
+        alt="Bella character" 
+        className="fixed right-0 bottom-0 h-48 sm:h-64 md:h-80 lg:h-96 object-contain z-20 pointer-events-none"
+      />
       
       <AnimatePresence mode="wait">
         {/* STEP 1: Selection */}
