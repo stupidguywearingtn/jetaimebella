@@ -44,11 +44,11 @@ const Index = () => {
       {/* Gradient overlay */}
       <div className="fixed inset-0 bg-gradient-to-br from-secondary/50 via-background to-muted/30 -z-10" />
       
-      {/* Character image stuck to right edge */}
+      {/* Character image stuck to left edge */}
       <img 
         src={bellaCharacter} 
         alt="Bella character" 
-        className="fixed right-0 bottom-0 h-48 sm:h-64 md:h-80 lg:h-96 object-contain z-20 pointer-events-none"
+        className="fixed left-0 bottom-0 h-48 sm:h-64 md:h-80 lg:h-96 object-contain z-20 pointer-events-none"
       />
       
       <AnimatePresence mode="wait">
