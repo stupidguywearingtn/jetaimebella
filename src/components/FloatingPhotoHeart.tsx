@@ -17,10 +17,18 @@ const FloatingPhotoHeart = ({ imageSrc, position, size = "md", delay = 0 }: Floa
     "center-left": "top-1/3 left-20 sm:left-24",
   };
 
-  const sizeClasses = {
+  // Taille du coeur (conteneur)
+  const heartSizeClasses = {
     sm: "w-64 h-64 sm:w-80 sm:h-80",
     md: "w-80 h-80 sm:w-96 sm:h-96",
     lg: "w-96 h-96 sm:w-[28rem] sm:h-[28rem]",
+  };
+
+  // Taille de l'image (plus petite que le coeur)
+  const imageSizeClasses = {
+    sm: "w-16 h-16 sm:w-20 sm:h-20",
+    md: "w-20 h-20 sm:w-24 sm:h-24",
+    lg: "w-24 h-24 sm:w-32 sm:h-32",
   };
 
   return (
@@ -43,28 +51,34 @@ const FloatingPhotoHeart = ({ imageSrc, position, size = "md", delay = 0 }: Floa
       }}
       className={`fixed ${positionClasses[position]} z-10 pointer-events-none`}
     >
-      {/* Heart shape container with image */}
+      {/* Grand coeur en arrière-plan */}
       <div 
-        className={`${sizeClasses[size]} relative`}
-        style={{
-          clipPath: "path('M 50 85 C 20 60, 0 35, 10 20 C 20 5, 35 5, 50 20 C 65 5, 80 5, 90 20 C 100 35, 80 60, 50 85 Z')",
-        }}
+        className={`${heartSizeClasses[size]} relative flex items-center justify-center`}
       >
-        <img 
-          src={imageSrc} 
-          alt="Memory" 
-          className="w-full h-full object-cover"
-        />
+        {/* Coeur rose en fond */}
+        <svg 
+          viewBox="0 0 100 100" 
+          className="absolute inset-0 w-full h-full"
+          style={{ filter: "drop-shadow(0 4px 20px hsl(var(--heart) / 0.4))" }}
+        >
+          <path 
+            d="M 50 85 C 20 60, 0 35, 10 20 C 20 5, 35 5, 50 20 C 65 5, 80 5, 90 20 C 100 35, 80 60, 50 85 Z"
+            fill="hsl(var(--heart))"
+            fillOpacity="0.85"
+          />
+        </svg>
+        
+        {/* Image centrée dans le coeur */}
+        <div 
+          className={`${imageSizeClasses[size]} relative z-10 rounded-full overflow-hidden border-4 border-white/80 shadow-lg`}
+        >
+          <img 
+            src={imageSrc} 
+            alt="Memory" 
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
-      
-      {/* Heart border/glow effect */}
-      <div 
-        className={`absolute inset-0 ${sizeClasses[size]}`}
-        style={{
-          clipPath: "path('M 50 85 C 20 60, 0 35, 10 20 C 20 5, 35 5, 50 20 C 65 5, 80 5, 90 20 C 100 35, 80 60, 50 85 Z')",
-          boxShadow: "0 0 20px hsl(var(--heart) / 0.4)",
-        }}
-      />
     </motion.div>
   );
 };
