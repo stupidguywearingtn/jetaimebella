@@ -3,7 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import MessageCard from "@/components/MessageCard";
 import ActionButton from "@/components/ActionButton";
 import FloatingHearts from "@/components/FloatingHearts";
+import FloatingPhotoHeart from "@/components/FloatingPhotoHeart";
 import bellaCharacter from "@/assets/bella-character.png";
+import photo1 from "@/assets/photo1.jpeg";
+import photo2 from "@/assets/photo2.png";
+import photo3 from "@/assets/photo3.jpeg";
+import photo4 from "@/assets/photo4.jpeg";
 
 type Step = "selection" | "question" | "response-ok" | "response-talk";
 
@@ -62,6 +67,9 @@ const Index = () => {
             exit="exit"
             className="w-full max-w-md mx-auto"
           >
+            <FloatingPhotoHeart imageSrc={photo1} position="top-right" size="md" delay={0.3} />
+            <FloatingPhotoHeart imageSrc={photo2} position="bottom-right" size="sm" delay={0.5} />
+            
             <div className="text-center mb-8 sm:mb-10">
               <motion.h1
                 initial={{ opacity: 0, y: -20 }}
@@ -106,6 +114,9 @@ const Index = () => {
             exit="exit"
             className="w-full max-w-md mx-auto text-center"
           >
+            <FloatingPhotoHeart imageSrc={photo3} position="top-right" size="md" delay={0.2} />
+            <FloatingPhotoHeart imageSrc={photo4} position="center-right" size="sm" delay={0.4} />
+            
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -170,6 +181,8 @@ const Index = () => {
             className="w-full max-w-md mx-auto text-center relative"
           >
             <FloatingHearts />
+            <FloatingPhotoHeart imageSrc={photo1} position="top-right" size="lg" delay={0.3} />
+            <FloatingPhotoHeart imageSrc={photo3} position="bottom-right" size="md" delay={0.5} />
             
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -210,6 +223,9 @@ const Index = () => {
             exit="exit"
             className="w-full max-w-md mx-auto text-center"
           >
+            <FloatingPhotoHeart imageSrc={photo2} position="top-right" size="md" delay={0.2} />
+            <FloatingPhotoHeart imageSrc={photo4} position="center-right" size="sm" delay={0.4} />
+            
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
