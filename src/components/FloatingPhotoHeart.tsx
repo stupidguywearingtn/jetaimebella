@@ -17,18 +17,11 @@ const FloatingPhotoHeart = ({ imageSrc, position, size = "md", delay = 0 }: Floa
     "center-left": "top-1/3 left-20 sm:left-24",
   };
 
-  // Taille du coeur (conteneur)
+  // Taille du coeur (grand)
   const heartSizeClasses = {
     sm: "w-64 h-64 sm:w-80 sm:h-80",
     md: "w-80 h-80 sm:w-96 sm:h-96",
     lg: "w-96 h-96 sm:w-[28rem] sm:h-[28rem]",
-  };
-
-  // Taille de l'image (plus petite que le coeur)
-  const imageSizeClasses = {
-    sm: "w-16 h-16 sm:w-20 sm:h-20",
-    md: "w-20 h-20 sm:w-24 sm:h-24",
-    lg: "w-24 h-24 sm:w-32 sm:h-32",
   };
 
   return (
@@ -51,33 +44,37 @@ const FloatingPhotoHeart = ({ imageSrc, position, size = "md", delay = 0 }: Floa
       }}
       className={`fixed ${positionClasses[position]} z-10 pointer-events-none`}
     >
-      {/* Grand coeur en arrière-plan */}
       <div 
-        className={`${heartSizeClasses[size]} relative flex items-center justify-center`}
+        className={`${heartSizeClasses[size]} relative`}
+        style={{ filter: "drop-shadow(0 8px 25px hsl(var(--heart) / 0.5))" }}
       >
-        {/* Coeur rose en fond */}
-        <svg 
-          viewBox="0 0 100 100" 
-          className="absolute inset-0 w-full h-full"
-          style={{ filter: "drop-shadow(0 4px 20px hsl(var(--heart) / 0.4))" }}
-        >
+        {/* Image découpée en forme de coeur */}
+        <svg viewBox="0 0 100 100" className="w-full h-full">
+          <defs>
+            <clipPath id={`heartClip-${position}-${delay}`}>
+              <path d="M 50 88 C 15 55, -5 30, 12 15 C 25 2, 40 5, 50 18 C 60 5, 75 2, 88 15 C 105 30, 85 55, 50 88 Z" />
+            </clipPath>
+          </defs>
+          
+          {/* Bordure du coeur */}
           <path 
-            d="M 50 85 C 20 60, 0 35, 10 20 C 20 5, 35 5, 50 20 C 65 5, 80 5, 90 20 C 100 35, 80 60, 50 85 Z"
+            d="M 50 88 C 15 55, -5 30, 12 15 C 25 2, 40 5, 50 18 C 60 5, 75 2, 88 15 C 105 30, 85 55, 50 88 Z"
             fill="hsl(var(--heart))"
-            fillOpacity="0.85"
+            stroke="white"
+            strokeWidth="3"
+          />
+          
+          {/* Image dans le coeur */}
+          <image 
+            href={imageSrc}
+            x="5"
+            y="5"
+            width="90"
+            height="90"
+            preserveAspectRatio="xMidYMid slice"
+            clipPath={`url(#heartClip-${position}-${delay})`}
           />
         </svg>
-        
-        {/* Image centrée dans le coeur */}
-        <div 
-          className={`${imageSizeClasses[size]} relative z-10 rounded-full overflow-hidden border-4 border-white/80 shadow-lg`}
-        >
-          <img 
-            src={imageSrc} 
-            alt="Memory" 
-            className="w-full h-full object-cover"
-          />
-        </div>
       </div>
     </motion.div>
   );
